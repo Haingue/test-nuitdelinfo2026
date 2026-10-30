@@ -16,7 +16,7 @@ on:
 jobs:
   tps-challenge:
     # ⚠️ NE PAS MODIFIER CETTE LIGNE — tag v1 contrôlé par l'organisation Toyota.
-    uses: Haingue/nuitdelinfo2026/.github/workflows/quality.yml@v1
+    uses: Haingue/nuitdelinfo2026/.github/workflows/quality.yml@v0
     with:
       team-name: 'REMPLACER_PAR_LE_NOM_DE_VOTRE_EQUIPE'
       identity-hash: 'REMPLACER_PAR_LEMPREINTE_FOURNIE_A_LINSCRIPTION'
