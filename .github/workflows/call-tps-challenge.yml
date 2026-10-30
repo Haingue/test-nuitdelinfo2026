@@ -1,23 +1,13 @@
-# Template officiel — à déposer TEL QUEL dans votre repo :
-#   .github/workflows/appeler-tps-challenge.yml
-#
-# ⚠️ Le fichier définitif vous est remis par Toyota lors de votre inscription
-#    (il contient votre team-name et votre empreinte d'identité).
-#    TOUTE modification de ce fichier entraîne la disqualification :
-#    son intégrité est vérifiée par hash SHA-256 à chaque exécution.
-
 name: "TPS Challenge — Appel de l'usine qualité"
-
 on:
   push:
     branches: [main]
-  workflow_dispatch: # permet de déclencher un scan manuel
-
+  workflow_dispatch:
 jobs:
   tps-challenge:
-    # ⚠️ NE PAS MODIFIER CETTE LIGNE — tag v1 contrôlé par l'organisation Toyota.
-    uses: Haingue/nuitdelinfo2026/.github/workflows/quality.yml@v0
+    uses: votre-org/tpsc-challenge/.github/workflows/quality.yml@v1
     with:
-      team-name: 'REMPLACER_PAR_LE_NOM_DE_VOTRE_EQUIPE'
-      identity-hash: 'REMPLACER_PAR_LEMPREINTE_FOURNIE_A_LINSCRIPTION'
+      team-name: "TMMF_Test"
+      identity-hash: "09bc3828155a915415a73ab38dc43612ace52f06bc5bff5306f53ef01fefc8d8"
     secrets: inherit
+# ↑↑ NE PAS MODIFIER — vérifié par hash à chaque exécution ↑↑
