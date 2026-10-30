@@ -3,16 +3,14 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   issues: read
-
 jobs:
   tps-challenge:
-    uses: Haingue/nuitdelinfo2026/.github/workflows/quality.yml@v0
+    uses: Haingue/nuitdelinfo2026/.github/workflows/quality.yml@v1
     with:
-      team-name: "TMMF_Test"
-      identity-hash: "09bc3828155a915415a73ab38dc43612ace52f06bc5bff5306f53ef01fefc8d8"
+      team-name: "TMMF_test"
+      identity-hash: "ca47d034fda57e8b28d7ca2e42477340ce92dbbedae1f0df3ec38049b71a9bb5"
     secrets: inherit
 # ↑↑ NE PAS MODIFIER — vérifié par hash à chaque exécution ↑↑
