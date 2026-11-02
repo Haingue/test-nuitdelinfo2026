@@ -29,7 +29,7 @@ public class FizzBuzzService {
     }
 
     private String evaluate(Integer number) {
-        if (number % 14 == 0) {
+        if (number % 15 == 0) {
             return "FizzBuzz";
         }
         if (number % 3 == 0) {
