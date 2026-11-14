@@ -32,6 +32,16 @@ describe('countLiveNeighbors', () => {
     expect(countLiveNeighbors(grid, 1, 1)).toBe(4)
     expect(countLiveNeighbors(grid, 0, 0)).toBe(2)
   })
+
+  it('returns 0 for coordinates outside the grid', () => {
+    const grid = [
+      [true, true],
+      [true, true],
+    ]
+
+    expect(countLiveNeighbors(grid, 5, 5)).toBe(0)
+    expect(countLiveNeighbors(grid, -3, -3)).toBe(0)
+  })
 })
 
 describe('nextGeneration', () => {
@@ -112,6 +122,8 @@ describe('toggleCell', () => {
   it('rejects coordinates outside the grid', () => {
     expect(() => toggleCell(createEmptyGrid(2, 2), 2, 0)).toThrow(RangeError)
     expect(() => toggleCell(createEmptyGrid(2, 2), 0, 2)).toThrow(RangeError)
+    expect(() => toggleCell(createEmptyGrid(2, 2), -1, 0)).toThrow(RangeError)
+    expect(() => toggleCell(createEmptyGrid(2, 2), 0.5, 0)).toThrow(RangeError)
   })
 })
 
@@ -124,5 +136,10 @@ describe('createRandomGrid', () => {
       [true, false],
       [true, false],
     ])
+  })
+
+  it('rejects a probability outside the [0, 1] range', () => {
+    expect(() => createRandomGrid(2, 2, -0.1)).toThrow(RangeError)
+    expect(() => createRandomGrid(2, 2, 1.1)).toThrow(RangeError)
   })
 })
