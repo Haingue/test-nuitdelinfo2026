@@ -10,11 +10,11 @@ function cell(page: Page, row: number, column: number) {
 }
 
 function generation(page: Page) {
-  return page.getByText('Génération', { exact: true }).locator('..')
+  return page.getByText(/^Génération \d+$/)
 }
 
 function liveCells(page: Page) {
-  return page.getByText('Cellules vivantes', { exact: true }).locator('..')
+  return page.getByText(/^Cellules vivantes \d+$/)
 }
 
 test.beforeEach(async ({ page }) => {
