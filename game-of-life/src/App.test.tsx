@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -86,18 +86,15 @@ describe('App', () => {
     expect(getCell(2, 3, 'morte')).toBeInTheDocument()
   })
 
-  it('runs the simulation every 300 ms once started and stops on pause', async () => {
+  it('runs the simulation every 300 ms once started and stops on pause', () => {
     vi.useFakeTimers()
-    const user = userEvent.setup({
-      advanceTimers: (ms) => vi.advanceTimersByTime(ms),
-    })
     render(<App />)
 
-    await user.click(getCell(2, 1, 'morte'))
-    await user.click(getCell(2, 2, 'morte'))
-    await user.click(getCell(2, 3, 'morte'))
+    fireEvent.click(getCell(2, 1, 'morte'))
+    fireEvent.click(getCell(2, 2, 'morte'))
+    fireEvent.click(getCell(2, 3, 'morte'))
 
-    await user.click(screen.getByRole('button', { name: 'Démarrer' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Démarrer' }))
 
     const pauseButton = screen.getByRole('button', { name: 'Pause' })
     expect(pauseButton).toHaveAttribute('aria-pressed', 'true')
@@ -113,7 +110,7 @@ describe('App', () => {
     })
     expectGeneration(2)
 
-    await user.click(pauseButton)
+    fireEvent.click(pauseButton)
     expect(
       screen.getByRole('button', { name: 'Démarrer' }),
     ).toHaveAttribute('aria-pressed', 'false')
@@ -124,22 +121,19 @@ describe('App', () => {
     expectGeneration(2)
   })
 
-  it('clears the board, stops the simulation and resets the generation', async () => {
+  it('clears the board, stops the simulation and resets the generation', () => {
     vi.useFakeTimers()
-    const user = userEvent.setup({
-      advanceTimers: (ms) => vi.advanceTimersByTime(ms),
-    })
     render(<App />)
 
-    await user.click(getCell(2, 1, 'morte'))
-    await user.click(getCell(2, 2, 'morte'))
-    await user.click(getCell(2, 3, 'morte'))
-    await user.click(screen.getByRole('button', { name: 'Démarrer' }))
+    fireEvent.click(getCell(2, 1, 'morte'))
+    fireEvent.click(getCell(2, 2, 'morte'))
+    fireEvent.click(getCell(2, 3, 'morte'))
+    fireEvent.click(screen.getByRole('button', { name: 'Démarrer' }))
     act(() => {
       vi.advanceTimersByTime(300)
     })
 
-    await user.click(screen.getByRole('button', { name: 'Réinitialiser' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Réinitialiser' }))
 
     expectGeneration(0)
     expectLiveCells(0)
