@@ -38,9 +38,10 @@ describe('App', () => {
     ).toBeInTheDocument()
     expectGeneration(0)
     expectLiveCells(0)
-    expect(
-      screen.getByRole('button', { name: 'Démarrer' }),
-    ).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.getByRole('button', { name: 'Démarrer' })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    )
     expect(screen.getByRole('button', { name: 'Étape' })).toBeEnabled()
 
     const board = screen.getByRole('group', {
@@ -111,9 +112,10 @@ describe('App', () => {
     expectGeneration(2)
 
     fireEvent.click(pauseButton)
-    expect(
-      screen.getByRole('button', { name: 'Démarrer' }),
-    ).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.getByRole('button', { name: 'Démarrer' })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    )
 
     act(() => {
       vi.advanceTimersByTime(900)
@@ -137,9 +139,10 @@ describe('App', () => {
 
     expectGeneration(0)
     expectLiveCells(0)
-    expect(
-      screen.getByRole('button', { name: 'Démarrer' }),
-    ).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.getByRole('button', { name: 'Démarrer' })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    )
 
     act(() => {
       vi.advanceTimersByTime(900)
@@ -159,8 +162,9 @@ describe('App', () => {
 
     expectGeneration(0)
     expectLiveCells(ROWS * COLUMNS)
-    expect(
-      screen.getByRole('button', { name: 'Démarrer' }),
-    ).toHaveAttribute('aria-pressed', 'false')
+    expect(screen.getByRole('button', { name: 'Démarrer' })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    )
   })
 })
